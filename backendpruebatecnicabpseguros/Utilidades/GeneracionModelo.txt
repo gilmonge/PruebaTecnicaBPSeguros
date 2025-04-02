@@ -1,0 +1,1 @@
+Scaffold-DbContext "Name=ConnectionStrings:dbSQL" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Modelos -Namespace EN.Models -Context dbContext -Force -NoOnConfiguring -UseDatabaseNames -NoPluralize

@@ -8,7 +8,8 @@ import PeriodoData from "../../data/PeriodoData.json";
 import AseguradorasData from "../../data/AseguradorasData.json";
 
 const PolizaFormularioComponent = ({
-    modelo, setModelo
+    modelo, setModelo,
+    obligatorioModelo = null,
 }) => {
     return (
         <div>
@@ -22,6 +23,7 @@ const PolizaFormularioComponent = ({
                             label="Número de Póliza"
                             placeholder="Número de Póliza"
                             name="numeroPoliza"
+                            esObligatorio={(obligatorioModelo.numeroPoliza && obligatorioModelo.numeroPoliza === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -34,6 +36,7 @@ const PolizaFormularioComponent = ({
                             placeholder="Tipo de Póliza"
                             name="tipoPoliza"
                             opciones={TipoPolizaData}
+                            esObligatorio={(obligatorioModelo.tipoPoliza && obligatorioModelo.tipoPoliza === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -45,6 +48,7 @@ const PolizaFormularioComponent = ({
                             label="Cédula del Asegurado"
                             placeholder="Cédula del Asegurado"
                             name="cedulaAsegurado"
+                            esObligatorio={(obligatorioModelo.cedulaAsegurado && obligatorioModelo.cedulaAsegurado === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -57,6 +61,7 @@ const PolizaFormularioComponent = ({
                             placeholder="Monto Asegurado"
                             name="montoAsegurado"
                             decimales={2}
+                            esObligatorio={(obligatorioModelo.montoAsegurado && obligatorioModelo.montoAsegurado === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -68,6 +73,7 @@ const PolizaFormularioComponent = ({
                             label="Fecha de Vencimiento"
                             placeholder="Fecha de Vencimiento"
                             name="fechaVencimiento"
+                            esObligatorio={(obligatorioModelo.fechaVencimiento && obligatorioModelo.fechaVencimiento === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -79,6 +85,7 @@ const PolizaFormularioComponent = ({
                             label="Fecha de Emisión"
                             placeholder="Fecha de Emisión"
                             name="fechaEmision"
+                            esObligatorio={(obligatorioModelo.fechaEmision && obligatorioModelo.fechaEmision === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -90,6 +97,7 @@ const PolizaFormularioComponent = ({
                             label="Coberturas"
                             placeholder="Coberturas"
                             name="coberturas"
+                            esObligatorio={(obligatorioModelo.coberturas && obligatorioModelo.coberturas === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -102,6 +110,7 @@ const PolizaFormularioComponent = ({
                             placeholder="Estado de la Póliza"
                             name="estadoPoliza"
                             opciones={EstadoPolizaData}
+                            esObligatorio={(obligatorioModelo.estadoPoliza && obligatorioModelo.estadoPoliza === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -114,6 +123,7 @@ const PolizaFormularioComponent = ({
                             placeholder="Prima"
                             name="prima"
                             decimales={2}
+                            esObligatorio={(obligatorioModelo.prima && obligatorioModelo.prima === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -126,6 +136,7 @@ const PolizaFormularioComponent = ({
                             placeholder="Periodo"
                             name="periodo"
                             opciones={PeriodoData}
+                            esObligatorio={(obligatorioModelo.periodo && obligatorioModelo.periodo === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -137,6 +148,7 @@ const PolizaFormularioComponent = ({
                             label="Fecha de Inclusión"
                             placeholder="Fecha de Inclusión"
                             name="fechaInclusion"
+                            esObligatorio={(obligatorioModelo.fechaInclusion && obligatorioModelo.fechaInclusion === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -149,14 +161,11 @@ const PolizaFormularioComponent = ({
                             placeholder="Aseguradora"
                             name="aseguradora"
                             opciones={AseguradorasData}
+                            esObligatorio={(obligatorioModelo.aseguradora && obligatorioModelo.aseguradora === true) ? true : false}
                         />
                     </div>
-
                 </div>
             </div>
-
-
-            <pre>{JSON.stringify(modelo)}</pre>
         </div>
     )
 }

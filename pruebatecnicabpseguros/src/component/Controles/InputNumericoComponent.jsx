@@ -26,7 +26,7 @@ const InputNumericoComponent = ({
         <div className="form-group mb-3">
             <label className="form-label">
                 {label} 
-                { esObligatorio && <span className="text-danger">*</span>}
+                { esObligatorio && <span className="text-danger mx-1">*</span>}
             </label>
             <input
                 type="text"

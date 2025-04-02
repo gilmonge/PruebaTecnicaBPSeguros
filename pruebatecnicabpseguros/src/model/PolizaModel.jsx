@@ -36,7 +36,25 @@ class PolizaFiltroModel {
     }
 }
 
+class PolizaObligatoriosModel {
+    constructor() {
+        this.numeroPoliza = true;
+        this.tipoPoliza = true;
+        this.cedulaAsegurado = true;
+        this.montoAsegurado = true;
+        this.fechaVencimiento = true;
+        this.fechaEmision = true;
+        this.coberturas = true;
+        this.estadoPoliza = true;
+        this.prima = true;
+        this.periodo = true;
+        this.fechaInclusion = true;
+        this.aseguradora = true;
+    }
+}
+
 export {
     PolizaModel,
-    PolizaFiltroModel
+    PolizaFiltroModel,
+    PolizaObligatoriosModel
 }

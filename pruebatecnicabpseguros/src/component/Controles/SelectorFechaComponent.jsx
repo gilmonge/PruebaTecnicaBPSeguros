@@ -31,7 +31,7 @@ const SelectorFechaComponent = ({
         <div className="form-group mb-3">
             <label className="form-label">
                 {label} 
-                { esObligatorio && <span className="text-danger">*</span>}
+                { esObligatorio && <span className="text-danger mx-1">*</span>}
             </label>
             <div className="row px-3">
                 <DatePicker

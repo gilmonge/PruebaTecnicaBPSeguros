@@ -3,14 +3,18 @@ import MenuLateralComponent from "../component/MenuLateral/MenuLateralComponent"
 import TablaComponent from "../component/Tabla/TablaComponent";
 import ModalComponent from "../component/Modal/ModalComponent";
 import TamaniosModalUtil from "../util/TamaniosModalUtil";
-import { ClienteModel } from '../model/ClienteModel';
+import { ClienteModel, ClienteObligatoriosModel } from '../model/ClienteModel';
 import ClienteFormularioComponent from '../component/Cliente/ClienteFormularioComponent';
 import EstiloBotonUtil from '../util/EstiloBotonUtil';
 
 const ClientePage = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
+    const [mostrarModalMensaje, setMostrarModalMensaje] = useState(false);
+    const [mensajeModal, setMensajeModal] = useState("");
     const [formularioEditar, setFormularioEditar] = useState(false);
     const [clienteModel, setClienteModel] = useState(new ClienteModel());
+    
+    const clienteObligatoriosModel = new ClienteObligatoriosModel();
 
     const agregarNuevo = () => {
         setFormularioEditar(false);
@@ -22,19 +26,53 @@ const ClientePage = () => {
         setFormularioEditar(true);
         setMostrarModal(true);
     }
+    
+    const handleBotonCerrar = () => {
+        setMostrarModal(false);
+        setFormularioEditar(false);
+        setClienteModel(new ClienteModel());
+        setMostrarModalMensaje(false);
+    }
 
     const handleBotonAdicional = () => {
         const resultadoValidacion = validarInformacion();
 
+        if(!resultadoValidacion) {
+            setMensajeModal('Por favor complete todos los campos obligatorios.');
+            setMostrarModalMensaje(true);
+            return;
+        }
     }
 
     const validarInformacion = () => {
-        const { cedula, nombre, primerApellido, segundoApellido, tipoPersona, fechaNacimiento } = clienteModel;
-        if (!cedula || !nombre || !primerApellido || !tipoPersona || !fechaNacimiento) {
-            alert('Por favor complete todos los campos obligatorios.');
-            return false;
+        var valido = true;
+        const { cedulaAsegurado, nombre, primerApellido, segundoApellido, tipoPersona, fechaNacimiento } = clienteModel;
+        
+        if(clienteObligatoriosModel.cedulaAsegurado) {
+            if(cedulaAsegurado === null || cedulaAsegurado === '') valido = false;
         }
-        return true;
+
+        if(clienteObligatoriosModel.nombre) {
+            if(nombre === null || nombre === '') valido = false;
+        }
+
+        if(clienteObligatoriosModel.primerApellido) {
+            if(primerApellido === null || primerApellido === '') valido = false;
+        }
+
+        if(clienteObligatoriosModel.segundoApellido) {
+            if(segundoApellido === null || segundoApellido === '') valido = false;
+        }
+
+        if(clienteObligatoriosModel.tipoPersona) {
+            if(tipoPersona === null || tipoPersona === '') valido = false;
+        }
+
+        if(clienteObligatoriosModel.fechaNacimiento) {
+            if(fechaNacimiento === null || fechaNacimiento === '') valido = false;
+        }
+
+        return valido;
     }
 
     const encabezados = [
@@ -92,11 +130,22 @@ const ClientePage = () => {
                 mensajeBotonAdicional={(formularioEditar) ? 'Actualizar' : 'Agregar'}
                 handleBotonAdicional={handleBotonAdicional}
                 estiloBotonAdicional={EstiloBotonUtil.Exito}
+                handleBotonCerrar={handleBotonCerrar}
             >
                 <ClienteFormularioComponent 
                     modelo={clienteModel}
                     setModelo={setClienteModel}
+                    obligatorioModelo={clienteObligatoriosModel}
                 />
+            </ModalComponent>
+
+            <ModalComponent 
+                mostrar={mostrarModalMensaje} 
+                setmostrar={setMostrarModalMensaje}
+                tamanioModal={TamaniosModalUtil.Normal}
+                mostrarTitulo={false}
+            >
+                <p>{mensajeModal}</p>
             </ModalComponent>
         </>
     )

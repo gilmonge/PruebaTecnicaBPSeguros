@@ -6,9 +6,10 @@ const ModalComponent = ({
     mostrarBotonAdicional = false,
     mensajeBotonAdicional = '',
     handleBotonAdicional = () => {},
+    handleBotonCerrar = () => setmostrar(false),
     estiloBotonAdicional = '',
+    mostrarTitulo = true,
 }) => {
-    const cerrar = () => setmostrar(false);
     return (
         <>
             {mostrar && (
@@ -20,13 +21,15 @@ const ModalComponent = ({
                 >
                     <div className={`modal-dialog modal-dialog-centered ${tamanioModal}`} role="document">
                         <div className="modal-content">
+                            {mostrarTitulo && (
                             <div className="modal-header">
                                 <h5 className="modal-title">{tituloModal}</h5>
-                                <button type="button" className="btn-close" onClick={cerrar}></button>
+                                <button type="button" className="btn-close" onClick={handleBotonCerrar}></button>
                             </div>
+                            )}
                             <div className="modal-body">{children}</div>
                             <div className="modal-footer">
-                                <button className="btn btn-secondary" onClick={cerrar}>
+                                <button className="btn btn-secondary" onClick={handleBotonCerrar}>
                                     Cerrar
                                 </button>
                                 {mostrarBotonAdicional && (

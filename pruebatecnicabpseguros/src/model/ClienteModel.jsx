@@ -24,7 +24,19 @@ class ClienteFiltroModel {
     }
 }
 
+class ClienteObligatoriosModel {
+    constructor() {
+        this.cedulaAsegurado = true;
+        this.nombre = true;
+        this.primerApellido = true;
+        this.segundoApellido = false;
+        this.tipoPersona = true;
+        this.fechaNacimiento = true;
+    }
+}
+
 export {
     ClienteModel,
-    ClienteFiltroModel
+    ClienteFiltroModel,
+    ClienteObligatoriosModel
 }

@@ -4,7 +4,8 @@ import SelectorComponent from "../Controles/SelectorComponent";
 import TipoPersonaData from "../../data/TipoPersonaData.json";
 
 const ClienteFormularioComponent = ({
-    modelo, setModelo
+    modelo, setModelo,
+    obligatorioModelo = null,
 }) => {
     return (
         <div>
@@ -17,6 +18,7 @@ const ClienteFormularioComponent = ({
                             label="Cédula del Asegurado"
                             placeholder="Cédula del Asegurado"
                             name="cedulaAsegurado"
+                            esObligatorio={(obligatorioModelo.cedulaAsegurado && obligatorioModelo.cedulaAsegurado === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -28,6 +30,7 @@ const ClienteFormularioComponent = ({
                             label="Nombre"
                             placeholder="Nombre"
                             name="nombre"
+                            esObligatorio={(obligatorioModelo.nombre && obligatorioModelo.nombre === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -39,6 +42,7 @@ const ClienteFormularioComponent = ({
                             label="Primer Apellido"
                             placeholder="Primer Apellido"
                             name="primerApellido"
+                            esObligatorio={(obligatorioModelo.primerApellido && obligatorioModelo.primerApellido === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -50,6 +54,7 @@ const ClienteFormularioComponent = ({
                             label="Segundo Apellido"
                             placeholder="Segundo Apellido"
                             name="segundoApellido"
+                            esObligatorio={(obligatorioModelo.segundoApellido && obligatorioModelo.segundoApellido === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -62,6 +67,7 @@ const ClienteFormularioComponent = ({
                             placeholder="Tipo de Persona"
                             name="tipoPersona"
                             opciones={TipoPersonaData}
+                            esObligatorio={(obligatorioModelo.tipoPersona && obligatorioModelo.tipoPersona === true) ? true : false}
                         />
                     </div>
                 </div>
@@ -73,12 +79,11 @@ const ClienteFormularioComponent = ({
                             label="Fecha de Nacimiento"
                             placeholder="Fecha de Nacimiento"
                             name="fechaNacimiento"
+                            esObligatorio={(obligatorioModelo.fechaNacimiento && obligatorioModelo.fechaNacimiento === true) ? true : false}
                         />
                     </div>
                 </div>
             </div>
-
-            <pre>{JSON.stringify(modelo)}</pre>
         </div>
     )
 }

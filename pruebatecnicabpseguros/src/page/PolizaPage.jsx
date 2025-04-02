@@ -3,14 +3,18 @@ import MenuLateralComponent from "../component/MenuLateral/MenuLateralComponent"
 import TablaComponent from "../component/Tabla/TablaComponent";
 import ModalComponent from "../component/Modal/ModalComponent"
 import TamaniosModalUtil from "../util/TamaniosModalUtil"
-import { PolizaModel } from "../model/PolizaModel"
+import { PolizaModel, PolizaObligatoriosModel } from "../model/PolizaModel"
 import PolizaFormularioComponent from '../component/Poliza/PolizaFormularioComponent';
 import EstiloBotonUtil from '../util/EstiloBotonUtil';
 
 const PolizaPage = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
+    const [mostrarModalMensaje, setMostrarModalMensaje] = useState(false);
+    const [mensajeModal, setMensajeModal] = useState("");
     const [formularioEditar, setFormularioEditar] = useState(false);
     const [polizaModel, setPolizaModel] = useState(new PolizaModel());
+
+    const polizaObligatoriosModel = new PolizaObligatoriosModel();
 
     const agregarNuevo = () => {
         setFormularioEditar(false);
@@ -22,8 +26,76 @@ const PolizaPage = () => {
         setMostrarModal(true);
     }
 
+    const handleBotonCerrar = () => {
+        setMostrarModal(false);
+        setFormularioEditar(false);
+        setPolizaModel(new PolizaModel());
+        setMostrarModalMensaje(false);
+    }
+
     const handleBotonAdicional = () => {
-        console.log('Botón adicional presionado');
+        const resultadoValidacion = validarInformacion();
+
+        if(!resultadoValidacion) {
+            setMensajeModal('Por favor complete todos los campos obligatorios.');
+            setMostrarModalMensaje(true);
+            return;
+        }
+    }
+    
+    const validarInformacion = () => {
+        var valido = true;
+        const { numeroPoliza, tipoPoliza, cedulaAsegurado, montoAsegurado, fechaVencimiento, fechaEmision, coberturas, estadoPoliza, prima, periodo, fechaInclusion, aseguradora } = polizaModel;
+        
+        if(polizaObligatoriosModel.numeroPoliza) {
+            if(numeroPoliza === null || numeroPoliza === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.tipoPoliza) {
+            if(tipoPoliza === null || tipoPoliza === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.cedulaAsegurado) {
+            if(cedulaAsegurado === null || cedulaAsegurado === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.montoAsegurado) {
+            if(montoAsegurado === null || montoAsegurado === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.fechaVencimiento) {
+            if(fechaVencimiento === null || fechaVencimiento === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.fechaEmision) {
+            if(fechaEmision === null || fechaEmision === '') valido = false;
+        }
+        
+        if(polizaObligatoriosModel.coberturas) {
+            if(coberturas === null || coberturas === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.estadoPoliza) {
+            if(estadoPoliza === null || estadoPoliza === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.prima) {
+            if(prima === null || prima === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.periodo) {
+            if(periodo === null || periodo === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.fechaInclusion) {
+            if(fechaInclusion === null || fechaInclusion === '') valido = false;
+        }
+
+        if(polizaObligatoriosModel.aseguradora) {
+            if(aseguradora === null || aseguradora === '') valido = false;
+        }
+
+        return valido;
     }
 
     const encabezados = [
@@ -85,11 +157,22 @@ const PolizaPage = () => {
                 mensajeBotonAdicional={(formularioEditar) ? 'Actualizar' : 'Agregar'}
                 handleBotonAdicional={handleBotonAdicional}
                 estiloBotonAdicional={EstiloBotonUtil.Exito}
+                handleBotonCerrar={handleBotonCerrar}
             >
                 <PolizaFormularioComponent
                     modelo={polizaModel}
                     setModelo={setPolizaModel}
+                    obligatorioModelo={polizaObligatoriosModel}
                 />
+            </ModalComponent>
+
+            <ModalComponent 
+                mostrar={mostrarModalMensaje} 
+                setmostrar={setMostrarModalMensaje}
+                tamanioModal={TamaniosModalUtil.Normal}
+                mostrarTitulo={false}
+            >
+                <p>{mensajeModal}</p>
             </ModalComponent>
         </>
     )
