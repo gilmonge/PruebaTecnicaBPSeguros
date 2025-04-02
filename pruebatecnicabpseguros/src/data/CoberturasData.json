@@ -1,0 +1,12 @@
+[
+    { "value": "muerteAccidental", "label": "Muerte Accidental" },
+    { "value": "incapacidadTotal", "label": "Incapacidad Total y Permanente" },
+    { "value": "gastosMedicos", "label": "Gastos Médicos" },
+    { "value": "hospitalizacion", "label": "Hospitalización" },
+    { "value": "danosMateriales", "label": "Daños Materiales" },
+    { "value": "robo", "label": "Robo o Hurto" },
+    { "value": "responsabilidadCivil", "label": "Responsabilidad Civil" },
+    { "value": "asistenciaViaje", "label": "Asistencia en Viaje" },
+    { "value": "coberturaIncendio", "label": "Cobertura contra Incendio" },
+    { "value": "terremoto", "label": "Cobertura por Terremoto" }
+]

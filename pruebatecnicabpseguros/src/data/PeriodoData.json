@@ -1,0 +1,8 @@
+[
+    { "value": "unico", "label": "Único" },
+    { "value": "mensual", "label": "Mensual" },
+    { "value": "bimestral", "label": "Bimestral" },
+    { "value": "trimestral", "label": "Trimestral" },
+    { "value": "semestral", "label": "Semestral" },
+    { "value": "anual", "label": "Anual" }
+]

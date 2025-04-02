@@ -2,20 +2,28 @@ import { useState } from 'react'
 import MenuLateralComponent from "../component/MenuLateral/MenuLateralComponent";
 import TablaComponent from "../component/Tabla/TablaComponent";
 import ModalComponent from "../component/Modal/ModalComponent"
-import TamaniosModal from "../util/TamaniosModal"
+import TamaniosModalUtil from "../util/TamaniosModalUtil"
+import { PolizaModel } from "../model/PolizaModel"
 import PolizaFormularioComponent from '../component/Poliza/PolizaFormularioComponent';
+import EstiloBotonUtil from '../util/EstiloBotonUtil';
 
 const PolizaPage = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
     const [formularioEditar, setFormularioEditar] = useState(false);
+    const [polizaModel, setPolizaModel] = useState(new PolizaModel());
 
     const agregarNuevo = () => {
         setFormularioEditar(false);
         setMostrarModal(true);
+        setPolizaModel(new PolizaModel());
     }
     const editar = () => {
         setFormularioEditar(true);
         setMostrarModal(true);
+    }
+
+    const handleBotonAdicional = () => {
+        console.log('Botón adicional presionado');
     }
 
     const encabezados = [
@@ -71,10 +79,17 @@ const PolizaPage = () => {
             <ModalComponent 
                 mostrar={mostrarModal} 
                 setmostrar={setMostrarModal}
-                tamanioModal={TamaniosModal.ExtraGrande}
+                tamanioModal={TamaniosModalUtil.ExtraGrande}
                 tituloModal={(formularioEditar) ? 'Editar Póliza' : 'Agregar Póliza'}
+                mostrarBotonAdicional={true}
+                mensajeBotonAdicional={(formularioEditar) ? 'Actualizar' : 'Agregar'}
+                handleBotonAdicional={handleBotonAdicional}
+                estiloBotonAdicional={EstiloBotonUtil.Exito}
             >
-                <PolizaFormularioComponent />
+                <PolizaFormularioComponent
+                    modelo={polizaModel}
+                    setModelo={setPolizaModel}
+                />
             </ModalComponent>
         </>
     )

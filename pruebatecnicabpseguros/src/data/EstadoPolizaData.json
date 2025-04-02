@@ -1,0 +1,9 @@
+[
+    { "value": "activa", "label": "Activa" },
+    { "value": "pendientePago", "label": "Pendiente de Pago" },
+    { "value": "vencida", "label": "Vencida" },
+    { "value": "cancelada", "label": "Cancelada" },
+    { "value": "suspendida", "label": "Suspendida Temporalmente" },
+    { "value": "finalizada", "label": "Finalizada" },
+    { "value": "enRevision", "label": "En Revisión" }
+]

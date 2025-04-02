@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Rutas from '../util/Rutas'
+import Rutas from '../util/RutasUtil'
 
 const LoginPage = () => {
     const navigate = useNavigate()

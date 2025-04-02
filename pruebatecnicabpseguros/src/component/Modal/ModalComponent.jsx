@@ -1,4 +1,13 @@
-const ModalComponent = ({ mostrar, setmostrar, children, tamanioModal = '', tituloModal = '' }) => {
+const ModalComponent = ({ 
+    mostrar, setmostrar, 
+    children, 
+    tamanioModal = '', 
+    tituloModal = '', 
+    mostrarBotonAdicional = false,
+    mensajeBotonAdicional = '',
+    handleBotonAdicional = () => {},
+    estiloBotonAdicional = '',
+}) => {
     const cerrar = () => setmostrar(false);
     return (
         <>
@@ -20,9 +29,11 @@ const ModalComponent = ({ mostrar, setmostrar, children, tamanioModal = '', titu
                                 <button className="btn btn-secondary" onClick={cerrar}>
                                     Cerrar
                                 </button>
-                                <button className="btn btn-secondary" onClick={cerrar}>
-                                    Cerrar 2
-                                </button>
+                                {mostrarBotonAdicional && (
+                                    <button className={`btn ${estiloBotonAdicional}`} onClick={handleBotonAdicional}>
+                                        {mensajeBotonAdicional}
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>

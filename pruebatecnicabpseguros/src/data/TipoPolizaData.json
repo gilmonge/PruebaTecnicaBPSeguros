@@ -1,0 +1,10 @@
+[
+    { "value": "vida", "label": "Seguro de Vida" },
+    { "value": "salud", "label": "Seguro de Salud" },
+    { "value": "automovil", "label": "Seguro de Automóvil" },
+    { "value": "hogar", "label": "Seguro de Hogar" },
+    { "value": "viaje", "label": "Seguro de Viaje" },
+    { "value": "responsabilidadCivil", "label": "Responsabilidad Civil" },
+    { "value": "empresarial", "label": "Seguro Empresarial" },
+    { "value": "incapacidad", "label": "Incapacidad Temporal o Permanente" }
+]

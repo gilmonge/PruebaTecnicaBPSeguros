@@ -1,0 +1,9 @@
+[
+    { "value": "ins", "label": "Instituto Nacional de Seguros (INS)" },
+    { "value": "mapfre", "label": "MAPFRE Costa Rica" },
+    { "value": "assa", "label": "ASSA Compañía de Seguros" },
+    { "value": "qualitas", "label": "Quálitas Costa Rica" },
+    { "value": "sagicor", "label": "Sagicor Costa Rica" },
+    { "value": "adisa", "label": "ADISA (Aseguradora del Istmo)" },
+    { "value": "bmi", "label": "BMI Seguros Costa Rica" }
+]

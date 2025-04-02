@@ -1,0 +1,4 @@
+[
+    { "value": "personaFisica", "label": "Persona Física" },
+    { "value": "personaJuridica", "label": "Persona Jurídica" }
+]

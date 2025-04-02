@@ -1,23 +1,40 @@
-import { useState } from 'react'
-import MenuLateralComponent from "../component/MenuLateral/MenuLateralComponent"
-import TablaComponent from "../component/Tabla/TablaComponent"
-import ModalComponent from "../component/Modal/ModalComponent"
-import TamaniosModal from "../util/TamaniosModal"
-import { ClienteModel } from '../model/ClienteModel'
-import ClienteFormularioComponent from '../component/Cliente/ClienteFormularioComponent'
+import { useState } from 'react';
+import MenuLateralComponent from "../component/MenuLateral/MenuLateralComponent";
+import TablaComponent from "../component/Tabla/TablaComponent";
+import ModalComponent from "../component/Modal/ModalComponent";
+import TamaniosModalUtil from "../util/TamaniosModalUtil";
+import { ClienteModel } from '../model/ClienteModel';
+import ClienteFormularioComponent from '../component/Cliente/ClienteFormularioComponent';
+import EstiloBotonUtil from '../util/EstiloBotonUtil';
 
 const ClientePage = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
     const [formularioEditar, setFormularioEditar] = useState(false);
-    const [cliente, setCliente] = useState(new ClienteModel())
+    const [clienteModel, setClienteModel] = useState(new ClienteModel());
 
     const agregarNuevo = () => {
         setFormularioEditar(false);
         setMostrarModal(true);
+        setClienteModel(new ClienteModel());
     }
+
     const editar = () => {
         setFormularioEditar(true);
         setMostrarModal(true);
+    }
+
+    const handleBotonAdicional = () => {
+        const resultadoValidacion = validarInformacion();
+
+    }
+
+    const validarInformacion = () => {
+        const { cedula, nombre, primerApellido, segundoApellido, tipoPersona, fechaNacimiento } = clienteModel;
+        if (!cedula || !nombre || !primerApellido || !tipoPersona || !fechaNacimiento) {
+            alert('Por favor complete todos los campos obligatorios.');
+            return false;
+        }
+        return true;
     }
 
     const encabezados = [
@@ -69,10 +86,17 @@ const ClientePage = () => {
             <ModalComponent 
                 mostrar={mostrarModal} 
                 setmostrar={setMostrarModal}
-                tamanioModal={TamaniosModal.ExtraGrande}
+                tamanioModal={TamaniosModalUtil.ExtraGrande}
                 tituloModal={(formularioEditar) ? 'Editar Cliente' : 'Agregar Cliente'}
+                mostrarBotonAdicional={true}
+                mensajeBotonAdicional={(formularioEditar) ? 'Actualizar' : 'Agregar'}
+                handleBotonAdicional={handleBotonAdicional}
+                estiloBotonAdicional={EstiloBotonUtil.Exito}
             >
-                <ClienteFormularioComponent />
+                <ClienteFormularioComponent 
+                    modelo={clienteModel}
+                    setModelo={setClienteModel}
+                />
             </ModalComponent>
         </>
     )

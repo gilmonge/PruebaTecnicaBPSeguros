@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Rutas from '../../util/Rutas'
+import RutasUtil from '../../util/RutasUtil'
 
 const MenuLateralComponent = () => {
     const navigate = useNavigate()
@@ -8,21 +8,21 @@ const MenuLateralComponent = () => {
     const redireccionar = (ruta) => { navigate(ruta); }
 
     const cerrarSesion = () => {
-        navigate(Rutas.LoginPage)
+        navigate(RutasUtil.LoginPage)
     }
 
     return (
         <nav className="pc-sidebar">
             <div className="navbar-wrapper">
                 <div className="m-header mt-5">
-                    <a  onClick={() => redireccionar(Rutas.DashboardPage)}   className="b-brand text-primary" >
+                    <a  onClick={() => redireccionar(RutasUtil.DashboardPage)}   className="b-brand text-primary" >
                         <img src="/assets/image/popular-seguros.png" className="img-fluid logo-lg" alt="logo" />
                     </a>
                 </div>
                 <div className="navbar-content">
                     <ul className="pc-navbar">
                         <li className="pc-item">
-                            <a onClick={() => redireccionar(Rutas.DashboardPage)} className="pc-link">
+                            <a onClick={() => redireccionar(RutasUtil.DashboardPage)} className="pc-link">
                                 <span className="pc-micon"><i className="ti ti-dashboard text-purple-500"></i></span>
                                 <span className="pc-mtext">Pantalla inicial</span>
                             </a>
@@ -33,13 +33,13 @@ const MenuLateralComponent = () => {
                             <i className="ti ti-dashboard"></i>
                         </li>
                         <li className="pc-item">
-                            <a onClick={() => redireccionar(Rutas.ClientePage)} className="pc-link">
+                            <a onClick={() => redireccionar(RutasUtil.ClientePage)} className="pc-link">
                                 <span className="pc-micon"><i className="ti ti-plant-2 text-purple-500"></i></span>
                                 <span className="pc-mtext">Clientes</span>
                             </a>
                         </li>
                         <li className="pc-item">
-                            <a onClick={() => redireccionar(Rutas.PolizaPage)} className="pc-link">
+                            <a onClick={() => redireccionar(RutasUtil.PolizaPage)} className="pc-link">
                                 <span className="pc-micon"><i className="ti ti-color-swatch text-purple-500"></i></span>
                                 <span className="pc-mtext">Pólizas</span>
                             </a>
