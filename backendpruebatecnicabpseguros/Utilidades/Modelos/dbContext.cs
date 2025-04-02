@@ -43,7 +43,7 @@ public partial class dbContext : DbContext
 
         modelBuilder.Entity<Poliza_Poliza>(entity =>
         {
-            entity.Property(e => e.id)
+            entity.Property(e => e.Id)
                 .HasMaxLength(37)
                 .IsUnicode(false);
             entity.Property(e => e.Aseguradora)

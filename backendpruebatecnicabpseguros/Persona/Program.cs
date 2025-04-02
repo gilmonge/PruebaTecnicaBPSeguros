@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Persona.Servicios.Cliente;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,12 @@ builder.Services.AddDbContext<DbContext>(options =>
         builder.Configuration.GetConnectionString("dbSQL")
     )
 );
+
+builder.Services.AddScoped<ClienteEditarAgregar>();
+builder.Services.AddScoped<ClienteEliminar>();
+builder.Services.AddScoped<ClienteObtenerDetalle>();
+builder.Services.AddScoped<ClienteObtenerLista>();
+
 
 var app = builder.Build();
 

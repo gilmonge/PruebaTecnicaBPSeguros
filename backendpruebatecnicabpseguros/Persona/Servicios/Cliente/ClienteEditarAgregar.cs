@@ -20,7 +20,9 @@ namespace Persona.Servicios.Cliente
                 var respuesta = new Respuesta<bool>();
                 using (var transaction = await _dbContext.Database.BeginTransactionAsync())
                 {
-                    var clienteDB = await _dbContext.Cliente_Cliente.FirstOrDefaultAsync(x => x.CedulaAsegurado == cliente.CedulaAsegurado);
+                    var clienteDB = await _dbContext.Cliente_Cliente.FirstOrDefaultAsync(x => 
+                        x.CedulaAsegurado == cliente.CedulaAsegurado
+                    );
 
                     if(clienteDB is not null)
                     {
@@ -32,13 +34,13 @@ namespace Persona.Servicios.Cliente
 
                         _dbContext.Cliente_Cliente.Update(clienteDB);
 
-                        respuesta.Mensaje = "Se ha editado la persona correctamente";
+                        respuesta.Mensaje = "Se ha editado el cliente correctamente";
                     }
                     else
                     {
                         var nuevoCliente = new Cliente_Cliente
                         {
-                            CedulaAsegurado = cliente.CedulaAsegurado,
+                            CedulaAsegurado = cliente.CedulaAsegurado!,
                             Nombre = cliente.Nombre,
                             PrimerApellido = cliente.PrimerApellido,
                             SegundoApellido = cliente.SegundoApellido,
@@ -52,7 +54,7 @@ namespace Persona.Servicios.Cliente
                     await _dbContext.SaveChangesAsync();
                     await transaction.CommitAsync();
 
-                    respuesta.Mensaje = "Se ha creado la persona correctamente";
+                    respuesta.Mensaje = "Se ha creado el cliente correctamente";
                 }
 
                 respuesta.Exito = true;
@@ -62,7 +64,7 @@ namespace Persona.Servicios.Cliente
             catch (Exception ex) { 
                 return new Respuesta<bool> { 
                     Exito = false, 
-                    Mensaje = "Ha ocurrido en el crear/editar persona"
+                    Mensaje = "Ha ocurrido en el crear/editar cliente"
                 };
             }
         }

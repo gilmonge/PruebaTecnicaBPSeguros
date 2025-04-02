@@ -5,7 +5,7 @@ namespace EN.Models;
 
 public partial class Poliza_Poliza
 {
-    public string id { get; set; } = null!;
+    public string Id { get; set; } = null!;
 
     public string? NumeroPoliza { get; set; }
 
