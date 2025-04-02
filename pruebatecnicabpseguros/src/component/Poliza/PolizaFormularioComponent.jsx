@@ -142,18 +142,6 @@ const PolizaFormularioComponent = ({
                 </div>
                 <div className="col-md-6">
                     <div className="form-group mb-3">
-                        <SelectorFechaComponent 
-                            setModelo={setModelo}
-                            datoInput={modelo.fechaInclusion}
-                            label="Fecha de Inclusión"
-                            placeholder="Fecha de Inclusión"
-                            name="fechaInclusion"
-                            esObligatorio={(obligatorioModelo.fechaInclusion && obligatorioModelo.fechaInclusion === true) ? true : false}
-                        />
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="form-group mb-3">
                         <SelectorComponent 
                             setModelo={setModelo}
                             datoInput={modelo.aseguradora}

@@ -1,5 +1,6 @@
 class PolizaModel {
     constructor(
+        id = null,
         numeroPoliza = null,
         tipoPoliza = null,
         cedulaAsegurado = null,
@@ -10,9 +11,9 @@ class PolizaModel {
         estadoPoliza = null,
         prima = null,
         periodo = null,
-        fechaInclusion = null,
         aseguradora = null,
     ) {
+        this.id = id;
         this.numeroPoliza = numeroPoliza;
         this.tipoPoliza = tipoPoliza;
         this.cedulaAsegurado = cedulaAsegurado;
@@ -23,7 +24,6 @@ class PolizaModel {
         this.estadoPoliza = estadoPoliza;
         this.prima = prima;
         this.periodo = periodo;
-        this.fechaInclusion = fechaInclusion;
         this.aseguradora = aseguradora;
     }
 }
@@ -48,7 +48,6 @@ class PolizaObligatoriosModel {
         this.estadoPoliza = true;
         this.prima = true;
         this.periodo = true;
-        this.fechaInclusion = true;
         this.aseguradora = true;
     }
 }
