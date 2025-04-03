@@ -45,10 +45,14 @@ const MenuLateralComponent = () => {
                                 <span className="pc-mtext">Pólizas</span>
                             </a>
                         </li>
-                        <li className="pc-item pc-caption">
-                            <label></label>
-                            <i className="ti ti-dashboard"></i>
+                        <li className="pc-item pc-caption"></li>
+                        <li className="pc-item">
+                            <a onClick={() => redireccionar(RutasUtil.SeguridadPage)} className="pc-link">
+                                <span className="pc-micon"><i className="ti ti-user text-purple-500"></i></span>
+                                <span className="pc-mtext">Seguridad</span>
+                            </a>
                         </li>
+                        <li className="pc-item pc-caption"></li>
                         <li className="pc-item">
                             <a onClick={cerrarSesion} className="pc-link">
                                 <span className="pc-micon"><i className="ti ti-power text-danger"></i></span>

@@ -14,13 +14,15 @@ namespace Poliza.Controllers
         private readonly PolizaEliminar _polizaEliminar;
         private readonly PolizaObtenerDetalle _polizaObtenerDetalle;
         private readonly PolizaObtenerLista _polizaObtenerLista;
+        private readonly PolizaConteoActivos _polizaConteoActivos;
 
-        public PolizaController(PolizaEditarAgregar polizaEditarAgregar, PolizaEliminar polizaEliminar, PolizaObtenerDetalle polizaObtenerDetalle, PolizaObtenerLista polizaObtenerLista)
+        public PolizaController(PolizaEditarAgregar polizaEditarAgregar, PolizaEliminar polizaEliminar, PolizaObtenerDetalle polizaObtenerDetalle, PolizaObtenerLista polizaObtenerLista, PolizaConteoActivos polizaConteoActivos)
         {
             _polizaEditarAgregar = polizaEditarAgregar;
             _polizaEliminar = polizaEliminar;
             _polizaObtenerDetalle = polizaObtenerDetalle;
             _polizaObtenerLista = polizaObtenerLista;
+            _polizaConteoActivos = polizaConteoActivos;
         }
 
         [HttpPost]
@@ -38,5 +40,9 @@ namespace Poliza.Controllers
         [HttpPost]
         [AutorizacionPersonalizada]
         public async Task<Respuesta<List<PolizaDTO>>> ObtenerLista([FromBody] ConsultarListado<PolizaFiltroDTO> filtro) => await _polizaObtenerLista.ObtenerLista(filtro);
+
+        [HttpGet]
+        [AutorizacionPersonalizada]
+        public async Task<Respuesta<int>> Conteo() => await _polizaConteoActivos.Conteo();
     }
 }

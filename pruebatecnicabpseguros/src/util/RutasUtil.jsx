@@ -3,4 +3,5 @@ export default class Rutas {
     static DashboardPage = '/dashboard';
     static ClientePage = '/cliente';
     static PolizaPage = '/poliza';
+    static SeguridadPage = '/seguridad';
 }

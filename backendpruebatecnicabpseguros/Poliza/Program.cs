@@ -24,6 +24,7 @@ builder.Services.AddScoped<PolizaEditarAgregar>();
 builder.Services.AddScoped<PolizaEliminar>();
 builder.Services.AddScoped<PolizaObtenerDetalle>();
 builder.Services.AddScoped<PolizaObtenerLista>();
+builder.Services.AddScoped<PolizaConteoActivos>();
 
 builder.Services.AddCors(options =>
 {

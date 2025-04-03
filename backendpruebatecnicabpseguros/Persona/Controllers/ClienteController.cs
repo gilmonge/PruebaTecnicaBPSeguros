@@ -14,13 +14,15 @@ namespace Persona.Controllers
         private readonly ClienteEliminar _clienteEliminar;
         private readonly ClienteObtenerDetalle _clienteObtenerDetalle;
         private readonly ClienteObtenerLista _clienteObtenerLista;
+        private readonly ClientesActivosConteo _clientesActivosConteo;
 
-        public ClienteController(ClienteEditarAgregar clienteEditarAgregar, ClienteEliminar clienteEliminar, ClienteObtenerDetalle clienteObtenerDetalle, ClienteObtenerLista clienteObtenerLista)
+        public ClienteController(ClienteEditarAgregar clienteEditarAgregar, ClienteEliminar clienteEliminar, ClienteObtenerDetalle clienteObtenerDetalle, ClienteObtenerLista clienteObtenerLista, ClientesActivosConteo clientesActivosConteo)
         {
             _clienteEditarAgregar = clienteEditarAgregar;
             _clienteEliminar = clienteEliminar;
             _clienteObtenerDetalle = clienteObtenerDetalle;
             _clienteObtenerLista = clienteObtenerLista;
+            _clientesActivosConteo = clientesActivosConteo;
         }
 
         [HttpPost]
@@ -38,5 +40,9 @@ namespace Persona.Controllers
         [HttpPost]
         [AutorizacionPersonalizada]
         public async Task<Respuesta<List<ClienteDTO>>> ObtenerLista([FromBody] ConsultarListado<ClienteFiltroDTO> filtro) => await _clienteObtenerLista.ObtenerLista(filtro);
+
+        [HttpGet]
+        [AutorizacionPersonalizada]
+        public async Task<Respuesta<int>> Conteo() => await _clientesActivosConteo.Conteo();
     }
 }

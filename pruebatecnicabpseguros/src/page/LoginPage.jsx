@@ -16,7 +16,7 @@ const LoginPage = () => {
     const navigate = useNavigate()
     const [mostrarModalMensaje, setMostrarModalMensaje] = useState(false);
     const [mensajeModal, setMensajeModal] = useState("");
-    const [loginModel, setLoginModel] = useState({usuario: 'gilberth.monge@outlook.com', password: '123456a'});
+    const [loginModel, setLoginModel] = useState({usuario: '', password: ''});
     const obligatorioModelo  = {usuario: true, password: true,};
 
     const iniciarSesion = async () => {

@@ -24,6 +24,7 @@ builder.Services.AddScoped<ClienteEditarAgregar>();
 builder.Services.AddScoped<ClienteEliminar>();
 builder.Services.AddScoped<ClienteObtenerDetalle>();
 builder.Services.AddScoped<ClienteObtenerLista>();
+builder.Services.AddScoped<ClientesActivosConteo>();
 
 builder.Services.AddCors(options =>
 {
