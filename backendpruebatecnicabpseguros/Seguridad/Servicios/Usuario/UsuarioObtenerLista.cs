@@ -21,11 +21,11 @@ namespace Seguridad.Servicios.Usuario
                 List<Seguridad_Usuario>? lista = null;
                 using (var transaction = await _dbContext.Database.BeginTransactionAsync())
                 {
-                    var totalDatos = await _dbContext.Seguridad_Usuario.CountAsync(x => x.EstaEliminado == false);
                     var query = _dbContext.Seguridad_Usuario.Where(x => x.EstaEliminado == false);
 
                     query = !string.IsNullOrEmpty(filtro.Filtro!.Usuario) ? query.Where(x => x.Usuario == filtro.Filtro.Usuario) : query;
 
+                    var totalDatos = query.Count();
                     lista = await query
                         .Skip((int)filtro.CantidadDatos! * ((int)filtro.PaginaActual! - 1))
                         .Take((int)filtro.CantidadDatos)

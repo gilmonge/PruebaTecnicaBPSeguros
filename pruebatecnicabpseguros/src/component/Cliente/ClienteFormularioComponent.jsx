@@ -6,6 +6,7 @@ import TipoPersonaData from "../../data/TipoPersonaData.json";
 const ClienteFormularioComponent = ({
     modelo, setModelo,
     obligatorioModelo = null,
+    formularioEditar
 }) => {
     return (
         <div>
@@ -19,6 +20,7 @@ const ClienteFormularioComponent = ({
                             placeholder="Cédula del Asegurado"
                             name="cedulaAsegurado"
                             esObligatorio={(obligatorioModelo.cedulaAsegurado && obligatorioModelo.cedulaAsegurado === true) ? true : false}
+                            readonly={formularioEditar}
                         />
                     </div>
                 </div>

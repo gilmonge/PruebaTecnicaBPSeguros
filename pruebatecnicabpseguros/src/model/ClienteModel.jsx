@@ -17,10 +17,9 @@ class ClienteModel {
 }
 
 class ClienteFiltroModel {
-    constructor(cedulaAsegurado = null, nombreCompleto = null, email = null) {
+    constructor(cedulaAsegurado = null, nombre = null) {
         this.cedulaAsegurado = cedulaAsegurado;
-        this.nombreCompleto = nombreCompleto;
-        this.email = email;
+        this.nombre = nombre;
     }
 }
 

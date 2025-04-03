@@ -43,7 +43,6 @@ namespace Poliza.Servicios.Poliza
                         polizaDB.Periodo = poliza.Periodo;
                         polizaDB.FechaInclusion = poliza.FechaInclusion;
                         polizaDB.Aseguradora = poliza.Aseguradora;
-                        polizaDB.EstaEliminado = false;
                         _dbContext.Poliza_Poliza.Update(polizaDB);
 
                         respuesta.Mensaje = "Se ha editado la póliza correctamente";
@@ -65,6 +64,7 @@ namespace Poliza.Servicios.Poliza
                             Periodo = poliza.Periodo,
                             FechaInclusion = poliza.FechaInclusion,
                             Aseguradora = poliza.Aseguradora,
+                            EstaEliminado = false
                         };
 
                         await _dbContext.Poliza_Poliza.AddAsync(nuevaPoliza);

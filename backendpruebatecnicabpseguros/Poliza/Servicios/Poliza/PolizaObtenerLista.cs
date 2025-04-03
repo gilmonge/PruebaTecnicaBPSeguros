@@ -21,14 +21,14 @@ namespace Poliza.Servicios.Poliza
                 List<Poliza_Poliza>? lista = null;
                 using (var transaction = await _dbContext.Database.BeginTransactionAsync())
                 {
-                    var totalDatos = await _dbContext.Poliza_Poliza.CountAsync(x => x.EstaEliminado == false);
                     var query = _dbContext.Poliza_Poliza.Where(x => x.EstaEliminado == false);
 
-                    query = !string.IsNullOrEmpty(filtro.Filtro!.NumeroPoliza) ? query.Where(x => x.NumeroPoliza == filtro.Filtro.NumeroPoliza) : query;
+                    query = !string.IsNullOrEmpty(filtro.Filtro!.NumeroPoliza) ? query.Where(x => x.NumeroPoliza!.Contains(filtro.Filtro.NumeroPoliza)) : query;
                     query = !string.IsNullOrEmpty(filtro.Filtro!.TipoPoliza) ? query.Where(x => x.TipoPoliza == filtro.Filtro.TipoPoliza) : query;
                     query = filtro.Filtro!.FechaVencimiento is not null ? query.Where(x => x.FechaVencimiento!.Value.Date == filtro.Filtro.FechaVencimiento.Value.Date) : query;
                     query = !string.IsNullOrEmpty(filtro.Filtro!.CedulaAsegurado) ? query.Where(x => x.CedulaAsegurado == filtro.Filtro.CedulaAsegurado) : query;
 
+                    var totalDatos = query.Count();
                     lista = await query
                         .Skip((int)filtro.CantidadDatos! * ((int)filtro.PaginaActual! - 1))
                         .Take((int)filtro.CantidadDatos)

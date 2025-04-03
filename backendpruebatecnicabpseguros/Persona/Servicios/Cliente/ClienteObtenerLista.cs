@@ -21,7 +21,6 @@ namespace Persona.Servicios.Cliente
                 List<Cliente_Cliente>? lista = null;
                 using (var transaction = await _dbContext.Database.BeginTransactionAsync())
                 {
-                    var totalDatos = await _dbContext.Cliente_Cliente.CountAsync(x => x.EstaEliminado == false);
                     var query = _dbContext.Cliente_Cliente.Where(x => x.EstaEliminado == false);
 
                     query = !string.IsNullOrEmpty(filtro.Filtro!.CedulaAsegurado) ? query.Where(x => x.CedulaAsegurado == filtro.Filtro.CedulaAsegurado) : query;
@@ -35,6 +34,7 @@ namespace Persona.Servicios.Cliente
                         x.SegundoApellido!.Contains(filtro.Filtro.Nombre));
                     }
 
+                    var totalDatos = query.Count();
                     lista = await query
                         .Skip((int)filtro.CantidadDatos! * ((int)filtro.PaginaActual! - 1))
                         .Take((int)filtro.CantidadDatos)

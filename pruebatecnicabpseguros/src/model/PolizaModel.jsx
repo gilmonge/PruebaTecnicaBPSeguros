@@ -7,6 +7,7 @@ class PolizaModel {
         montoAsegurado = null,
         fechaVencimiento = null,
         fechaEmision = null,
+        fechaInclusion = null,
         coberturas = null,
         estadoPoliza = null,
         prima = null,
@@ -20,6 +21,7 @@ class PolizaModel {
         this.montoAsegurado = montoAsegurado;
         this.fechaVencimiento = fechaVencimiento;
         this.fechaEmision = fechaEmision;
+        this.fechaInclusion = fechaInclusion;
         this.coberturas = coberturas;
         this.estadoPoliza = estadoPoliza;
         this.prima = prima;
@@ -29,10 +31,16 @@ class PolizaModel {
 }
 
 class PolizaFiltroModel {
-    constructor(numeroPoliza = null, fechaVencimiento = null, cedulaAsegurado = null) {
+    constructor(
+        numeroPoliza = null, 
+        fechaVencimiento = null, 
+        cedulaAsegurado = null,
+        tipoPoliza = null
+    ) {
         this.numeroPoliza = numeroPoliza;
         this.fechaVencimiento = fechaVencimiento;
         this.cedulaAsegurado = cedulaAsegurado;
+        this.tipoPoliza = tipoPoliza;
     }
 }
 
@@ -44,6 +52,7 @@ class PolizaObligatoriosModel {
         this.montoAsegurado = true;
         this.fechaVencimiento = true;
         this.fechaEmision = true;
+        this.fechaInclusion = true;
         this.coberturas = true;
         this.estadoPoliza = true;
         this.prima = true;

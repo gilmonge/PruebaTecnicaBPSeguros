@@ -5,7 +5,8 @@ const InputTextComponent = ({
     placeholder = "",
     name = "",
     esObligatorio = false,
-    type = "text"
+    type = "text",
+    readonly=false
 }) => {
     const handleChange = (e) => {
         setModelo(prevState => ({
@@ -27,6 +28,7 @@ const InputTextComponent = ({
                 name={name}
                 value={datoInput}
                 onChange={handleChange}
+                readOnly={readonly}
             />
         </div>
     )

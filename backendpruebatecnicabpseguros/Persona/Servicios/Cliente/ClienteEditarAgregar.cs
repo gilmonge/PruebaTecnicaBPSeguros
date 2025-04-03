@@ -31,7 +31,6 @@ namespace Persona.Servicios.Cliente
                         clienteDB.SegundoApellido = cliente.SegundoApellido;
                         clienteDB.TipoPersona = cliente.TipoPersona;
                         clienteDB.FechaNacimiento = cliente.FechaNacimiento;
-                        clienteDB.EstaEliminado = false;
 
                         _dbContext.Cliente_Cliente.Update(clienteDB);
 
@@ -46,7 +45,8 @@ namespace Persona.Servicios.Cliente
                             PrimerApellido = cliente.PrimerApellido,
                             SegundoApellido = cliente.SegundoApellido,
                             TipoPersona = cliente.TipoPersona,
-                            FechaNacimiento = cliente.FechaNacimiento
+                            FechaNacimiento = cliente.FechaNacimiento,
+                            EstaEliminado = false
                         };
 
                         await _dbContext.Cliente_Cliente.AddAsync(nuevoCliente);

@@ -6,6 +6,7 @@ import TipoPolizaData from "../../data/TipoPolizaData.json";
 import EstadoPolizaData from "../../data/EstadoPolizaData.json";
 import PeriodoData from "../../data/PeriodoData.json";
 import AseguradorasData from "../../data/AseguradorasData.json";
+import SelectorClienteComponent from "../Selectores/SelectorClienteComponent";
 
 const PolizaFormularioComponent = ({
     modelo, setModelo,
@@ -15,7 +16,6 @@ const PolizaFormularioComponent = ({
         <div>
             <div className="row">
                 <div className="col-md-6">
-
                     <div className="form-group mb-3">
                         <InputTextComponent 
                             setModelo={setModelo}
@@ -42,11 +42,11 @@ const PolizaFormularioComponent = ({
                 </div>
                 <div className="col-md-6">
                     <div className="form-group mb-3">
-                        <InputTextComponent 
+                        <SelectorClienteComponent 
                             setModelo={setModelo}
                             datoInput={modelo.cedulaAsegurado}
-                            label="Cédula del Asegurado"
-                            placeholder="Cédula del Asegurado"
+                            label="Asegurado"
+                            placeholder="Asegurado"
                             name="cedulaAsegurado"
                             esObligatorio={(obligatorioModelo.cedulaAsegurado && obligatorioModelo.cedulaAsegurado === true) ? true : false}
                         />
@@ -86,6 +86,18 @@ const PolizaFormularioComponent = ({
                             placeholder="Fecha de Emisión"
                             name="fechaEmision"
                             esObligatorio={(obligatorioModelo.fechaEmision && obligatorioModelo.fechaEmision === true) ? true : false}
+                        />
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="form-group mb-3">
+                        <SelectorFechaComponent 
+                            setModelo={setModelo}
+                            datoInput={modelo.fechaInclusion}
+                            label="Fecha de Inclusión"
+                            placeholder="Fecha de Inclusión"
+                            name="fechaInclusion"
+                            esObligatorio={(obligatorioModelo.fechaInclusion && obligatorioModelo.fechaInclusion === true) ? true : false}
                         />
                     </div>
                 </div>

@@ -26,7 +26,7 @@ const SelectorComponent = ({
                 value={datoInput}
                 onChange={handleChange}
             >
-                <option value="">{placeholder}</option>
+                <option value="" >{placeholder}</option>
                 {opciones.map((opcion, index) => (
                     <option key={index} value={opcion.value}>
                         {opcion.label}
