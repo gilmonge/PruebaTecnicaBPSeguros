@@ -76,7 +76,7 @@ public partial class dbContext : DbContext
 
         modelBuilder.Entity<Seguridad_Usuario>(entity =>
         {
-            entity.Property(e => e.id)
+            entity.Property(e => e.Id)
                 .HasMaxLength(37)
                 .IsUnicode(false);
             entity.Property(e => e.Codigo)

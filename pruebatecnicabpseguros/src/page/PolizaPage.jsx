@@ -37,7 +37,7 @@ const PolizaPage = () => {
         const resultadoValidacion = validarInformacion();
 
         if(!resultadoValidacion) {
-            setMensajeModal('Por favor complete todos los campos obligatorios.');
+            setMensajeModal('El formulario no es válido.');
             setMostrarModalMensaje(true);
             return;
         }

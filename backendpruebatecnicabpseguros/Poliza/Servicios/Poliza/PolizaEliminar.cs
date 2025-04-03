@@ -20,7 +20,7 @@ namespace Poliza.Servicios.Poliza
                 using (var transaction = await _dbContext.Database.BeginTransactionAsync())
                 {
                     var clienteDB = await _dbContext.Poliza_Poliza.FirstOrDefaultAsync(x =>
-                        x.id == idPoliza && x.EstaEliminado == false
+                        x.Id == idPoliza && x.EstaEliminado == false
                     );
 
                     if (clienteDB is null)
@@ -41,10 +41,10 @@ namespace Poliza.Servicios.Poliza
                 }
 
                 respuesta.Exito = true;
-
+                respuesta.Dato = true;
                 return respuesta;
             }
-            catch (Exception ex)
+            catch
             {
                 return new Respuesta<bool>
                 {

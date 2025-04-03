@@ -8,6 +8,7 @@ const MenuLateralComponent = () => {
     const redireccionar = (ruta) => { navigate(ruta); }
 
     const cerrarSesion = () => {
+        localStorage.removeItem('user')
         navigate(RutasUtil.LoginPage)
     }
 

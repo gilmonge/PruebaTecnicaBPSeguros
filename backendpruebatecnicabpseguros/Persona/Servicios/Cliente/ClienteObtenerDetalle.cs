@@ -47,7 +47,7 @@ namespace Persona.Servicios.Cliente
 
                 return respuesta;
             }
-            catch (Exception ex)
+            catch
             {
                 return new Respuesta<ClienteDTO>
                 {

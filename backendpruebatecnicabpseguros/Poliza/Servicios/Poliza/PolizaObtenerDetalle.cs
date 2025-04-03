@@ -22,7 +22,7 @@ namespace Poliza.Servicios.Poliza
                 using (var transaction = await _dbContext.Database.BeginTransactionAsync())
                 {
                     polizaDB = await _dbContext.Poliza_Poliza.FirstOrDefaultAsync(x =>
-                        x.id == idPoliza && x.EstaEliminado == false
+                        x.Id == idPoliza && x.EstaEliminado == false
                     );
                 }
 
@@ -47,14 +47,14 @@ namespace Poliza.Servicios.Poliza
                     Prima = polizaDB.Prima,
                     Periodo = polizaDB.Periodo,
                     FechaInclusion = polizaDB.FechaInclusion,
-                    Aseguradora = polizaDB.Aseguradora,
+                    Aseguradora = polizaDB.Aseguradora
                 };
                 respuesta.Mensaje = "Se ha obtenido la póliza correctamente";
                 respuesta.Exito = true;
 
                 return respuesta;
             }
-            catch (Exception ex)
+            catch
             {
                 return new Respuesta<PolizaDTO>
                 {

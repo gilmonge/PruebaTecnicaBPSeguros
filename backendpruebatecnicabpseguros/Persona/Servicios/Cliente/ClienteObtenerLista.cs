@@ -39,6 +39,10 @@ namespace Persona.Servicios.Cliente
                         .Skip((int)filtro.CantidadDatos! * ((int)filtro.PaginaActual! - 1))
                         .Take((int)filtro.CantidadDatos)
                         .ToListAsync();
+
+                    respuesta.totalPaginas = (int)Math.Ceiling((double)totalDatos / (int)filtro.CantidadDatos);
+                    respuesta.totalDatos = totalDatos;
+                    respuesta.paginaActual = (int)filtro.PaginaActual;
                 }
 
                 var listaRegistros = new List<ClienteDTO>();
@@ -61,7 +65,7 @@ namespace Persona.Servicios.Cliente
 
                 return respuesta;
             }
-            catch (Exception ex)
+            catch
             {
                 return new Respuesta<List<ClienteDTO>>
                 {

@@ -42,10 +42,10 @@ namespace Persona.Servicios.Cliente
                 }
 
                 respuesta.Exito = true;
-
+                respuesta.Dato = true;
                 return respuesta;
             }
-            catch (Exception ex)
+            catch
             {
                 return new Respuesta<bool>
                 {

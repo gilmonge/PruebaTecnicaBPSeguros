@@ -6,17 +6,28 @@ import ClientePage from './page/ClientePage'
 import PolizaPage from './page/PolizaPage'
 import RutasUtil from './util/RutasUtil'
 import "react-datepicker/dist/react-datepicker.css";
+import RutaPrivada from './RutaPrivada'
 
 const App = () => {
     return (
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path={RutasUtil.LoginPage} element={<LoginPage />} />
-          <Route path={RutasUtil.DashboardPage} element={<DashboardPage />} />
-          <Route path={RutasUtil.ClientePage} element={<ClientePage />} />
-          <Route path={RutasUtil.PolizaPage} element={<PolizaPage />} />
+            <Route path="/" element={<Navigate to={RutasUtil.LoginPage} />} />
+            <Route path={RutasUtil.LoginPage} element={<LoginPage />} />
+
+            <Route 
+                path={RutasUtil.DashboardPage} 
+                element={ <RutaPrivada> <DashboardPage /> </RutaPrivada> }
+            />
+            <Route 
+                path={RutasUtil.ClientePage} 
+                element={ <RutaPrivada> <ClientePage /> </RutaPrivada> }
+            />
+            <Route 
+                path={RutasUtil.PolizaPage} 
+                element={ <RutaPrivada> <PolizaPage /> </RutaPrivada> }
+            />
         </Routes>
     )
-  }
-  
-  export default App
+}
+
+export default App

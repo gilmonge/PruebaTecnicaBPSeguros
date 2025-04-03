@@ -6,6 +6,7 @@ import TamaniosModalUtil from "../util/TamaniosModalUtil";
 import { ClienteModel, ClienteObligatoriosModel } from '../model/ClienteModel';
 import ClienteFormularioComponent from '../component/Cliente/ClienteFormularioComponent';
 import EstiloBotonUtil from '../util/EstiloBotonUtil';
+import EditarAgregarService from '../service/Persona/Cliente/EditarAgregarService'
 
 const ClientePage = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
@@ -13,6 +14,7 @@ const ClientePage = () => {
     const [mensajeModal, setMensajeModal] = useState("");
     const [formularioEditar, setFormularioEditar] = useState(false);
     const [clienteModel, setClienteModel] = useState(new ClienteModel());
+    const [actualizarInformacionLista, setActualizarInformacionLista] = useState(false);
     
     const clienteObligatoriosModel = new ClienteObligatoriosModel();
 
@@ -34,14 +36,34 @@ const ClientePage = () => {
         setMostrarModalMensaje(false);
     }
 
-    const handleBotonAdicional = () => {
+    const handleBotonAdicional = async () => {
         const resultadoValidacion = validarInformacion();
 
         if(!resultadoValidacion) {
-            setMensajeModal('Por favor complete todos los campos obligatorios.');
+            setMensajeModal('El formulario no es válido.');
             setMostrarModalMensaje(true);
             return;
         }
+
+        setMensajeModal("Guardando información");
+        setMostrarModalMensaje(true);
+        const editarAgregarService = new EditarAgregarService();
+        const {exito, mensaje} = await editarAgregarService.servicio(clienteModel);
+        setMostrarModalMensaje(false);
+
+        if (!exito) {
+            setMensajeModal(mensaje);
+            setMostrarModalMensaje(true);
+            return;
+        }
+        
+        setMensajeModal(mensaje);
+        setMostrarModalMensaje(true);
+        setActualizarInformacionLista(true);
+        
+        setMostrarModal(false);
+        setFormularioEditar(false);
+        setClienteModel(new ClienteModel());
     }
 
     const validarInformacion = () => {

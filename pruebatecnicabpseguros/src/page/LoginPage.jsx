@@ -1,19 +1,64 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Rutas from '../util/RutasUtil'
+import InputTextComponent from "../component/Controles/InputTextComponent";
+import LoginService from '../service/Seguridad/Usuario/LoginService';
+import ModalComponent from "../component/Modal/ModalComponent";
+import TamaniosModalUtil from "../util/TamaniosModalUtil";
+import { Navigate } from 'react-router-dom'
 
 const LoginPage = () => {
+    const userData = localStorage.getItem('user')
+    if (userData) {
+        return <Navigate to={Rutas.DashboardPage} />
+    }
+    
     const navigate = useNavigate()
-    const [loginModel, setLoginModel] = useState({correo: '', password: ''});
+    const [mostrarModalMensaje, setMostrarModalMensaje] = useState(false);
+    const [mensajeModal, setMensajeModal] = useState("");
+    const [loginModel, setLoginModel] = useState({usuario: 'gilberth.monge@outlook.com', password: '123456a'});
+    const obligatorioModelo  = {usuario: true, password: true,};
 
-    const iniciarSesion = () => {
+    const iniciarSesion = async () => {
+        const resultadoValidacion = validarInformacion();
+
+        if(!resultadoValidacion) {
+            setMensajeModal('El formulario no es válido.');
+            setMostrarModalMensaje(true);
+            return;
+        }
+        
+        setMensajeModal("Iniciando sesión");
+        setMostrarModalMensaje(true);
+
+        const loginService = new LoginService();
+        const {exito, mensaje, dato} = await loginService.servicio(loginModel);
+
+        setMostrarModalMensaje(false);
+
+        if (!exito) {
+            setMensajeModal(mensaje);
+            setMostrarModalMensaje(true);
+            return;
+        }
+
+        localStorage.setItem('user', JSON.stringify(dato))
         navigate(Rutas.DashboardPage);
     }
-    const handleChange = (e) => {
-        setLoginModel(prevState => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }));
+    
+    const validarInformacion = () => {
+        var valido = true;
+        const { usuario, password } = loginModel;
+        
+        if(obligatorioModelo.usuario) {
+            if(usuario === null || usuario === '') valido = false;
+        }
+
+        if(obligatorioModelo.password) {
+            if(password === null || password === '') valido = false;
+        }
+
+        return valido;
     }
 
     return (
@@ -31,23 +76,24 @@ const LoginPage = () => {
                                 <h3 className="mb-0"><b>Inicio de sesión</b></h3>
                             </div>
                             <div className="form-group mb-3">
-                                <label className="form-label">Correo electrónico</label>
-                                <input 
-                                    type="email" 
-                                    name="correo"
-                                    className="form-control" 
-                                    placeholder="Correo electrónico" 
-                                    onChange={handleChange}
+                                <InputTextComponent 
+                                    setModelo={setLoginModel}
+                                    datoInput={loginModel.usuario}
+                                    label="Correo electrónico"
+                                    placeholder="Correo electrónico"
+                                    name="usuario"
+                                    esObligatorio={(obligatorioModelo.usuario && obligatorioModelo.usuario === true) ? true : false}
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label className="form-label">Constraseña</label>
-                                <input 
-                                    type="password" 
+                                <InputTextComponent 
+                                    setModelo={setLoginModel}
+                                    datoInput={loginModel.password}
+                                    label="Constraseña"
+                                    placeholder="Constraseña"
                                     name="password"
-                                    className="form-control" 
-                                    placeholder="Constraseña" 
-                                    onChange={handleChange}
+                                    esObligatorio={(obligatorioModelo.password && obligatorioModelo.password === true) ? true : false}
+                                    type="password"
                                 />
                             </div>
                             <div className="d-grid mt-4">
@@ -61,6 +107,15 @@ const LoginPage = () => {
                     </div>
                 </div>
             </div>
+            
+            <ModalComponent 
+                mostrar={mostrarModalMensaje} 
+                setmostrar={setMostrarModalMensaje}
+                tamanioModal={TamaniosModalUtil.Normal}
+                mostrarTitulo={false}
+            >
+                <p>{mensajeModal}</p>
+            </ModalComponent>
         </div>
     )
 }

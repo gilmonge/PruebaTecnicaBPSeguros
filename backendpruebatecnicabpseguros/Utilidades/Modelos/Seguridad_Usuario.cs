@@ -5,7 +5,7 @@ namespace EN.Models;
 
 public partial class Seguridad_Usuario
 {
-    public string id { get; set; } = null!;
+    public string Id { get; set; } = null!;
 
     public string Usuario { get; set; } = null!;
 

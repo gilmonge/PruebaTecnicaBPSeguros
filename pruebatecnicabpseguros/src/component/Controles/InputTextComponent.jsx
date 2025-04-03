@@ -4,7 +4,8 @@ const InputTextComponent = ({
     label = "",
     placeholder = "",
     name = "",
-    esObligatorio = false
+    esObligatorio = false,
+    type = "text"
 }) => {
     const handleChange = (e) => {
         setModelo(prevState => ({
@@ -16,11 +17,11 @@ const InputTextComponent = ({
     return (
         <div className="form-group mb-3">
             <label className="form-label">
-                {label} 
+                {label}
                 { esObligatorio && <span className="text-danger mx-1">*</span>}
             </label>
             <input 
-                type="text" 
+                type={type} 
                 className="form-control" 
                 placeholder={placeholder}
                 name={name}

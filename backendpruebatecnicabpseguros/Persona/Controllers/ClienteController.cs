@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Persona.Atributos;
 using Persona.DTO.Cliente;
 using Persona.Servicios.Cliente;
 using Utilidades.DTO;
@@ -23,15 +24,19 @@ namespace Persona.Controllers
         }
 
         [HttpPost]
-        public async Task<Respuesta<bool>> EditarAgregar([FromBody] ClienteEditarAgregarDTO cliente) => await _clienteEditarAgregar.EditarAgregar(cliente);
+        [AutorizacionPersonalizada]
+        public async Task<Respuesta<string>> EditarAgregar([FromBody] ClienteEditarAgregarDTO cliente) => await _clienteEditarAgregar.EditarAgregar(cliente);
 
         [HttpDelete("{cedulaAsegurado}")]
+        [AutorizacionPersonalizada]
         public async Task<Respuesta<bool>> Eliminar(string cedulaAsegurado) => await _clienteEliminar.Eliminar(cedulaAsegurado);
 
         [HttpGet("{cedulaAsegurado}")]
+        [AutorizacionPersonalizada]
         public async Task<Respuesta<ClienteDTO>> ObtenerDetalle(string cedulaAsegurado) => await _clienteObtenerDetalle.ObtenerDetalle(cedulaAsegurado);
 
         [HttpPost]
+        [AutorizacionPersonalizada]
         public async Task<Respuesta<List<ClienteDTO>>> ObtenerLista([FromBody] ConsultarListado<ClienteFiltroDTO> filtro) => await _clienteObtenerLista.ObtenerLista(filtro);
     }
 }

@@ -14,10 +14,10 @@ namespace Persona.Servicios.Cliente
             _dbContext = dbContext;
         }
 
-        public async Task<Respuesta<bool>> EditarAgregar(ClienteEditarAgregarDTO cliente)
+        public async Task<Respuesta<string>> EditarAgregar(ClienteEditarAgregarDTO cliente)
         {
             try {
-                var respuesta = new Respuesta<bool>();
+                var respuesta = new Respuesta<string>();
                 using (var transaction = await _dbContext.Database.BeginTransactionAsync())
                 {
                     var clienteDB = await _dbContext.Cliente_Cliente.FirstOrDefaultAsync(x => 
@@ -31,6 +31,7 @@ namespace Persona.Servicios.Cliente
                         clienteDB.SegundoApellido = cliente.SegundoApellido;
                         clienteDB.TipoPersona = cliente.TipoPersona;
                         clienteDB.FechaNacimiento = cliente.FechaNacimiento;
+                        clienteDB.EstaEliminado = false;
 
                         _dbContext.Cliente_Cliente.Update(clienteDB);
 
@@ -58,11 +59,12 @@ namespace Persona.Servicios.Cliente
                 }
 
                 respuesta.Exito = true;
-
+                respuesta.Dato = cliente.CedulaAsegurado!;
                 return respuesta;
             }
-            catch (Exception ex) { 
-                return new Respuesta<bool> { 
+            catch 
+            { 
+                return new Respuesta<string> { 
                     Exito = false, 
                     Mensaje = "Ha ocurrido en el crear/editar cliente"
                 };
